@@ -1,0 +1,10 @@
+.red{
+    z-index: 1;
+    height: 900px;
+    background: red;
+    /* background-size: cover; */
+}
+.green{
+    height: 900px;
+    background: green;
+}
