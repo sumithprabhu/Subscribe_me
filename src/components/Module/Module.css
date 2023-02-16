@@ -13,6 +13,8 @@ body.active-modal {
 .modal, .overlay {
     width: 100vw;
     height: 100vh;
+    min-height: 100%;
+    min-width: 100%;
     top: 0;
     left: 0;
     right: 0;
@@ -24,6 +26,8 @@ body.active-modal {
     background: rgba(49,49,49,0.8);
 }
 .modal-content {
+    min-height: 50%;
+    min-width: 50%;
     position: absolute;
     top: 40%;
     left: 50%;
@@ -47,3 +51,7 @@ body.active-modal {
     filter: blur(2px);
     -webkit-filter: blur(2px);
   }
+.animation1{
+    width: 250px;
+    transform: translate(10%,5%);
+}
