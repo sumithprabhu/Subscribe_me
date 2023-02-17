@@ -55,3 +55,26 @@ body.active-modal {
     width: 250px;
     transform: translate(10%,5%);
 }
+.content{
+    text-align: center;
+    margin-top: -20px;
+}
+.scontent{
+    text-align: center;
+    padding-top: 2px;
+    padding-bottom: 50px;
+}
+.btn{
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    padding: 10px 50px;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.name{
+    text-align: center;
+}
