@@ -41,13 +41,17 @@ As part of Challenges,
 
 ## Project Link:
 
+```
+https://subscribe-me.netlify.app/
+```
+
 
 ## Run Project:
 To Run this project on your local system , follow the below steps:
 
   1) Fetch/copy three folders that is assets,constants,components from the repo
 
-    https://github.com/sumithprabhu/SuperPush_Dapp
+    https://github.com/sumithprabhu/Subscribe_me
 
   2) Install the Dependencies from the top of the file of the module to be used.
 
