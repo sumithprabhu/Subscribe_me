@@ -21,7 +21,7 @@ Currently there are three modules:
 
 ## Problem it solves:
 
-**Cost effective** : Users only have to pay for the dedicated amount of time they use the DApp , That is they can subscribe whenever needed and can unsubscribe whenever not needed , they are just needed to pay equvivalent amount of price .
+**Cost effective** : Users only have to pay for the dedicated amount of time they use the DApp , That is they can subscribe whenever needed and can unsubscribe whenever not needed , they are just needed to pay equivalent amount of price .
 
 **Integration** : Managing subscriptions across different dApps can be complex and time-consuming for developers, who must build custom solutions for each platform. The subscription dApp would provide a standardized module that developers can easily integrate with their code to manage subscriptions in a concise manner.
 
