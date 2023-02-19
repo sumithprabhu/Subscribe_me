@@ -1,70 +1,55 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Subscribe Me
 
-## Available Scripts
+A subscription dApp that can be used by other dApps to integrate a model through which users can buy and cancel a subscription of their product and get notified with Push Notifications for every action
 
-In the project directory, you can run:
+This project uses Superfluid SDK to create, update and delete streams and also provides decentralized notification for every actions on the dapp with help of Push protocol SDK. This project consist of simple frontend which can perform stream operations, but in order to get notified a user must need to opt-in for the SuperPush channel present at staging.push.org.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Buy subscription
+- Cancel subscription
+- Notified for every actions on dApp
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Problem it solves:
 
-### `npm run build`
+**Integration**: Managing subscriptions across different dApps can be complex and time-consuming for developers, who must build custom solutions for each platform. The subscription dApp would provide a standardized API that developers can easily integrate with to manage subscriptions in a consistent manner.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Security**: This dApp would leverage blockchain technology to provide secure storage and management of subscription data, protecting user data from potential security breaches and unauthorized access.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Notifications**: Keeping users informed about the status of their subscriptions is important to prevent billing issues or other subscription-related problems. This dApp would provide push notifications for subscription-related events, keeping users informed and up-to-date on the status of their subscriptions.
+## Challenges faced:
+As part of Challenges,
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  - Used Superfluid SDK first time.
+  - Struggled with react hooks.
+  - Runtime error while deployment.
+  -  Used Push SDK for frontend side and got some signer errors.
+  Although all errors are solved now, and the project is up and running.
 
-### `npm run eject`
+## Project Link:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Run Project:
+To Run this project on your local system , follow the below steps:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  1) Clone the repo
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    git clone https://github.com/sumithprabhu/SuperPush_Dapp
 
-## Learn More
+  2) Install packages
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    npm install 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  3) Run the code
 
-### Code Splitting
+    npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  4) The project is good to go 🚀 .
 
-### Analyzing the Bundle Size
+## Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
