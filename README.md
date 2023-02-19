@@ -1,9 +1,9 @@
 
 # Subscribe Me
 
-A subscription dApp that can be used by other dApps to integrate a model through which users can buy and cancel a subscription of their product and get notified with Push Notifications for every action
+A subscription dApp that can be used by other dApps to integrate a model through which users can buy and cancel a subscription of their product and get notified with Push Notifications for every action.
 
-This project uses Superfluid SDK to create, update and delete streams and also provides decentralized notification for every actions on the dapp with help of Push protocol SDK. This project consist of simple frontend which can perform stream operations, but in order to get notified a user must need to opt-in for the SuperPush channel present at staging.push.org.
+This project uses Superfluid SDK 
 
 
 ## Features
