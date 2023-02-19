@@ -5,7 +5,7 @@ import Lottie from "lottie-react";
 import { images } from "../../constants";
 import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from "ethers";
-
+import * as PushAPI from "@pushprotocol/restapi";
 
 
 
@@ -41,6 +41,39 @@ const UnsubscribeBtn = ({receiver,subprice,name}) =>{
     }
   };
   connectWallet();
+
+  const sendNotification = async(titlein, bodyin,recipientin) => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+  
+    const signer = provider.getSigner();
+      try {
+        const recipient = `eip155:5:${recipientin}`
+        const apiResponse = await PushAPI.payloads.sendNotification({
+          signer,
+          type: 3, // target
+          identityType: 2, // direct payload
+          notification: {
+            title: titlein,
+            body: bodyin
+          },
+          payload: {
+            title: titlein,
+            body: bodyin,
+            cta: '',
+            img: ''
+          },
+          recipients: recipient, // recipient address
+          channel: 'eip155:5:0xe701C317d677F9C54ACf59b5a5dbaDCfAa0AF2e0', // your channel address
+          env: 'staging'
+        });
+        
+        // apiResponse?.status === 204, if sent successfully!
+        console.log('API repsonse: ', apiResponse);
+      } catch (err) {
+        console.error('Error: ', err);
+      }
+    }
 
   const toggleModal = () => {
     setModal(!modal);
@@ -144,7 +177,8 @@ const UnsubscribeBtn = ({receiver,subprice,name}) =>{
       console.log("Deleting your stream...");
   
       const result = await deleteFlowOperation.exec(superSigner);
-    
+    sendNotification("User unsubscribed",`User ${send} unsubscribed from ${name}`,receiver);
+    sendNotification("Unsubscribed",`You just unsubscribed from ${name}`,send);
       
       setsubscribe(false);
       setinprogress(true);
@@ -176,7 +210,7 @@ const UnsubscribeBtn = ({receiver,subprice,name}) =>{
           <div className="overlay" onClick={toggleModal}></div>
           <div className="modal-content">
             <div className="header">
-            <img className="img" src={images.logo}/>
+            <img className="img1" src={images.logo}/>
             {currentAccount === "" ? (
               <button
                 id="connectWallet"

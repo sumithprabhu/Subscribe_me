@@ -1,10 +1,32 @@
-.red{
+.home{
     z-index: 1;
     height: 900px;
-    background: red;
+    background:white;
+    
     /* background-size: cover; */
 }
-.green{
+.purple{
     height: 900px;
-    background: green;
+    background: #8A2BE2;
+    text-align: center;
+    
+}
+.content1{
+    padding: 200px;
+    font-size: 50px;
+    color: white;
+}
+.content{
+    
+    padding: 30px;
+}
+
+.img{
+    padding-left: 635px;
+    padding-top: 50px;
+}
+.description{
+    color: #8A2BE2;
+    font-weight: bold;
+    padding-left: 550px;
 }

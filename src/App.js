@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
       
-      {/* <SubscriptionModal receiver={'0xe701C317d677F9C54ACf59b5a5dbaDCfAa0AF2e0'} subprice={500} name={"SuperPush"} /> */}
+      {/* <SubscriptionModal receiver={''0x49403ae592C82fc3f861cD0b9738f7524Fb1F38C'} subprice={500} name={"SuperPush"} /> */}
         <Home />
         
       </header>
