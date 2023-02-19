@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
-import "./subscriptionModal.css";
+import "./UnsubscribeBtn.css";
 
 import Lottie from "lottie-react";
 import { images } from "../../constants";
 import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from "ethers";
 
-const SubscriptionModal = ({ receiver, subprice, name }) => {
-  let account;
+
+
+
+
+const UnsubscribeBtn = ({receiver,subprice,name}) =>{
+  let account1;
   const [currentAccount, setCurrentAccount] = useState("");
   const [modal, setModal] = useState(false);
   const [checkingSubscription, setcheckingSubscription] = useState(true);
@@ -15,9 +19,9 @@ const SubscriptionModal = ({ receiver, subprice, name }) => {
   const [wrong, setwrong] = useState(false);
   const [subscribe, setsubscribe] = useState(false);
   const [inprogress, setinprogress] = useState(false);
-  const [checkingSubscriptionafter, setcheckingSubscriptionafter] =
-    useState(false);
+ 
 
+  
   const connectWallet = async () => {
     try {
       const { ethereum } = window;
@@ -31,23 +35,17 @@ const SubscriptionModal = ({ receiver, subprice, name }) => {
       });
       console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
-      account = currentAccount;
+      account1 = currentAccount;
     } catch (error) {
       console.log(error);
     }
   };
   connectWallet();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      toggleModal();
-    }, 7000);
-    return () => clearTimeout(timer);
-  }, []);
-
   const toggleModal = () => {
     setModal(!modal);
   };
+  
 
   if (modal) {
     document.body.classList.add("active-modal");
@@ -55,36 +53,34 @@ const SubscriptionModal = ({ receiver, subprice, name }) => {
     document.body.classList.remove("active-modal");
   }
 
-  if (checkingSubscription & modal)  {
+  if (checkingSubscription & modal) {
     setTimeout(() => {
       checksubscription();
     }, 5000);
-  }
-  if (checkingSubscriptionafter & modal) {
-    setTimeout(() => {
-      checksubscription();
-    }, 15000);
   }
 
   if (isSubscribed) {
     setTimeout(() => {
-      setModal(false);
-    }, 5000);
+        setsubscribe(true);
+        setisSubscribed(false);
+      }, 5000);
+    
   }
   if (wrong) {
     setTimeout(() => {
-      setsubscribe(true);
-      setwrong(false);
-    }, 7000);
+        setModal(false);
+      }, 3000);
   }
 
   if (inprogress) {
+    
     setTimeout(() => {
-      setsubscribe(false);
-
-      setcheckingSubscriptionafter(true);
-    }, 5000);
+      setinprogress(false)
+      toggleModal()
+    }, 3000);
   }
+
+  
 
   async function checksubscription() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -108,7 +104,6 @@ const SubscriptionModal = ({ receiver, subprice, name }) => {
     if (frm == subprice) {
       setisSubscribed(true);
       setcheckingSubscription(false);
-      setcheckingSubscriptionafter(false);
     } else {
       setwrong(true);
       setcheckingSubscription(false);
@@ -117,49 +112,50 @@ const SubscriptionModal = ({ receiver, subprice, name }) => {
     }
   }
 
-  async function createNewFlow() {
+  async function deleteExistingFlow() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send("eth_requestAccounts", []);
-
+  
     const signer = provider.getSigner();
-
+  
     const chainId = await window.ethereum.request({ method: "eth_chainId" });
     const sf = await Framework.create({
       chainId: Number(chainId),
-      provider: provider,
+      provider: provider
     });
-
+  
     const superSigner = sf.createSigner({ signer: signer });
-
+  
     console.log(signer);
     console.log(await superSigner.getAddress());
     const daix = await sf.loadSuperToken("fDAIx");
-
+  
     console.log(daix);
-
+  
     try {
-      const send = await superSigner.getAddress();
-      const createFlowOperation = daix.createFlow({
+      const send=await superSigner.getAddress();
+      const deleteFlowOperation = daix.deleteFlow({
         sender: send,
-        receiver: receiver,
-        flowRate: Math.round((subprice * 10 ** 18) / (3600 * 24 * 30)),
+        receiver: receiver
         // userData?: string
       });
-
-      console.log("Creating your stream...");
-      const result = await createFlowOperation.exec(superSigner);
+  
+      console.log(deleteFlowOperation);
+      console.log("Deleting your stream...");
+  
+      const result = await deleteFlowOperation.exec(superSigner);
+    
+      
+      setsubscribe(false);
       setinprogress(true);
-      //setinprogress(true);
       console.log(result);
-      console.log(
-        `Congrats - you've just created a money stream!
-      `
-      );
+  
+      
+      
     } catch (error) {
       console.log(
         "Hmmm, your transaction threw an error. Make sure that this stream does not already exist, and that you've entered a valid Ethereum address!"
       );
-
       console.error(error);
     }
   }
@@ -167,37 +163,36 @@ const SubscriptionModal = ({ receiver, subprice, name }) => {
   function Createbutton() {
     return (
       <div>
-        <button className="btn" onClick={createNewFlow}>
-          Subscribe for ${subprice} Daix/month
-        </button>
+        <button className="btn1" onClick={deleteExistingFlow}>Unsubscribe</button>
       </div>
     );
   }
 
   return (
     <>
+    <button className="btn1" onClick={toggleModal}>Unsubscribe</button>
       {modal && (
         <div className="modal">
-          <div className="overlay"></div>
+          <div className="overlay" onClick={toggleModal}></div>
           <div className="modal-content">
             <div className="header">
             <img className="img" src={images.logo}/>
-              {currentAccount === "" ? (
-                <button
-                  id="connectWallet"
-                  className="button1"
-                  onClick={connectWallet}
-                >
-                  Connect Wallet
-                </button>
-              ) : (
-                <button className="button1">
-                  {`${currentAccount.substring(
-                    0,
-                    4
-                  )}...${currentAccount.substring(38)}`}
-                </button>
-              )}
+            {currentAccount === "" ? (
+              <button
+                id="connectWallet"
+                className="button1"
+                onClick={connectWallet}
+              >
+                Connect Wallet
+              </button>
+            ) : (
+              <button className="button1">
+                {`${currentAccount.substring(
+                  0,
+                  4
+                )}...${currentAccount.substring(38)}`}
+              </button>
+            )}
             </div>
 
             {checkingSubscription && (
@@ -206,39 +201,40 @@ const SubscriptionModal = ({ receiver, subprice, name }) => {
                 <p className="content">Checking subscription status</p>
               </div>
             )}
-            {checkingSubscriptionafter && (
-              <div className="animation1">
-                <Lottie animationData={images.loading} />
-                <p className="content">Checking subscription status</p>
-              </div>
-            )}
+
             {isSubscribed && (
               <div className="animation1" on>
                 <Lottie animationData={images.greentick} />
-                <p className="content">You are subscribed and good to go</p>
+                <p className="content">You are subscribed</p>
+                <p className="content">Redirecting to Unsubscription page</p>
               </div>
             )}
             {wrong && (
-              <div className="animation1">
+              <div className="animation1" >
                 <Lottie className="animation" animationData={images.redcross} />
                 <p className="content">You are not subscribed</p>
-                <p className="content">Redirecting towards subscription page</p>
+                
               </div>
             )}
             {subscribe && (
               <div className="animation1">
                 <h1 className="name">{name}</h1>
-                <div className="scontent">
-                  Loving my content then go ahead hit the subscribe button
-                </div>
-                <Createbutton className="btn" />
+                <div className="scontent">We are crying seeing you go</div>
+                <Createbutton className="btn1" />
               </div>
+            )}
+            {inprogress &&(
+              <div className="animation1">
+              <Lottie animationData={images.greentick} />
+              <p className="content">Unsubscribed succesfully</p>
+              
+            </div>
             )}
           </div>
         </div>
       )}
     </>
   );
-};
+}
 
-export default SubscriptionModal;
+export default UnsubscribeBtn;

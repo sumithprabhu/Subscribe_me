@@ -64,7 +64,7 @@ body.active-modal {
     padding-top: 2px;
     padding-bottom: 50px;
 }
-.btn{
+.btn1{
     justify-content: center;
     align-items: center;
     justify-items: center;
@@ -74,7 +74,8 @@ body.active-modal {
     border-radius: 7px;
     border-style: none;
     cursor: pointer;
-    margin-left: auto;
+    margin-left: 37px;
+    
 }
 .header{
     display: flex;
@@ -84,7 +85,6 @@ body.active-modal {
 .name{
     text-align: center;
 }
-
 .img{
     margin-top: 10px;
     width: 150px;

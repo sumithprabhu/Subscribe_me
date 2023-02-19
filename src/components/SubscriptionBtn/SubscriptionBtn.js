@@ -6,15 +6,20 @@ import { images } from "../../constants";
 import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from "ethers";
 
+
+
+
 const SubscriptionBtn = ({receiver,subprice,name}) =>{
-  let account;
+  let account1;
   const [currentAccount, setCurrentAccount] = useState("");
   const [modal, setModal] = useState(false);
   const [checkingSubscription, setcheckingSubscription] = useState(true);
+  const [checkingSubscriptionafter, setcheckingSubscriptionafter] = useState(false);
   const [isSubscribed, setisSubscribed] = useState(false);
   const [wrong, setwrong] = useState(false);
   const [subscribe, setsubscribe] = useState(false);
   const [inprogress, setinprogress] = useState(false);
+  
 
   const connectWallet = async () => {
     try {
@@ -29,13 +34,14 @@ const SubscriptionBtn = ({receiver,subprice,name}) =>{
       });
       console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
-      account = currentAccount;
+      account1 = currentAccount;
     } catch (error) {
       console.log(error);
     }
   };
   connectWallet();
 
+  
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -50,6 +56,11 @@ const SubscriptionBtn = ({receiver,subprice,name}) =>{
     setTimeout(() => {
       checksubscription();
     }, 5000);
+  }
+  if (checkingSubscriptionafter & modal) {
+    setTimeout(() => {
+      checksubscription();
+    }, 17000);
   }
 
   if (isSubscribed) {
@@ -67,8 +78,8 @@ const SubscriptionBtn = ({receiver,subprice,name}) =>{
   if (inprogress) {
     setTimeout(() => {
       setsubscribe(false);
-      setcheckingSubscription(true);
-    }, 10000);
+      setcheckingSubscriptionafter(true);
+    }, 5000);
   }
 
   
@@ -95,6 +106,7 @@ const SubscriptionBtn = ({receiver,subprice,name}) =>{
     if (frm == subprice) {
       setisSubscribed(true);
       setcheckingSubscription(false);
+      setcheckingSubscriptionafter(false);
     } else {
       setwrong(true);
       setcheckingSubscription(false);
@@ -134,6 +146,8 @@ const SubscriptionBtn = ({receiver,subprice,name}) =>{
 
       console.log("Creating your stream...");
       const result = await createFlowOperation.exec(superSigner);
+      
+     
       setinprogress(true);
       //setinprogress(true);
       console.log(result);
@@ -160,13 +174,13 @@ const SubscriptionBtn = ({receiver,subprice,name}) =>{
 
   return (
     <>
-    <button onClick={toggleModal}>Subscribe</button>
+    <button className="btn1" onClick={toggleModal}>Subscribe</button>
       {modal && (
         <div className="modal">
           <div className="overlay" onClick={toggleModal}></div>
           <div className="modal-content">
             <div className="header">
-              <p>Subscribe me</p>
+              <img className="img" src={images.logo}/>
             {currentAccount === "" ? (
               <button
                 id="connectWallet"
@@ -185,6 +199,12 @@ const SubscriptionBtn = ({receiver,subprice,name}) =>{
             )}
             </div>
 
+            {checkingSubscriptionafter && (
+              <div className="animation1">
+                <Lottie animationData={images.loading} />
+                <p className="content">Checking subscription status</p>
+              </div>
+            )}
             {checkingSubscription && (
               <div className="animation1">
                 <Lottie animationData={images.loading} />

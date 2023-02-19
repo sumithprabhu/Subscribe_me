@@ -68,6 +68,12 @@ body.active-modal {
     align-items: center;
     justify-items: center;
     padding: 10px 50px;
+    background-color:#8A2BE2;
+    color: white;
+    border-radius: 7px;
+    border-style: none;
+    cursor: pointer;
+    margin-left: auto;
 }
 .header{
     display: flex;
@@ -76,4 +82,17 @@ body.active-modal {
 }
 .name{
     text-align: center;
+}
+.img{
+    margin-top: 10px;
+    width: 150px;
+}
+.button1{
+    width:100px;
+    margin-top: 5px;
+    background-color:#8A2BE2;
+    color: white;
+    border-radius: 7px;
+    border-style: none;
+    cursor: pointer;
 }
