@@ -69,7 +69,11 @@ To Run this project on your local system , follow the below steps:
      ```
      <SubscriptionModal receiver={'RECEIVERS_ADDRESS'} subprice={SUBSCRIPTION_PRICE} name={"DAPP_NAME"}/>
      ```
-  
+## Future Scope
+
+- Making a convenient NPM package , to get ease in using the module.
+- Including more currency types for subscription.
+
 ## Screenshots
 
 ![App Screenshot](https://github.com/sumithprabhu/npm_modal_demo/blob/main/src/images/Screenshot_20230219_125144.png?raw=true)
